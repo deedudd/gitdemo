@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite parallel="tests" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="maven.Home.Listeners"/>
+  </listeners>
+  <test parallel="tests" name="Test(failed)">
+    <classes>
+      <class name="maven.Home.ValidateNavigationbar">
+        <methods>
+          <include name="navigationBar"/>
+          <include name="tearDown"/>
+          <include name="initialize"/>
+        </methods>
+      </class> <!-- maven.Home.ValidateNavigationbar -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

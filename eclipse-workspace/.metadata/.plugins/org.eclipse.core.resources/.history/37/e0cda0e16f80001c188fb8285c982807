@@ -1,0 +1,90 @@
+package HomePractice;
+
+import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+
+public class Ecart {
+	static WebDriver driver;
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
+		Ecart ec = new Ecart();
+		//ec.addToCart();
+		//ec.SearchStringTest();
+		//ec.addToCartList();
+		ec.addToCartListAgain();
+	}
+
+	void addToCart() throws InterruptedException {
+
+		driver.findElement(By.xpath("//h4[text()=\"Cucumber - 1 Kg\"]/following-sibling::div[2]")).click();
+		driver.findElement(By.xpath("//a[@class='cart-icon']")).click();
+
+		driver.findElement(By.xpath("//button[text()='PROCEED TO CHECKOUT']")).click();
+		Thread.sleep(3000);
+
+		driver.findElement(By.xpath("//input[@class='promoCode']")).sendKeys("rahulshettyacademy");
+		driver.findElement(By.xpath("//button[@class='promoBtn']")).click();
+		Thread.sleep(5000);
+		System.out.println(driver.findElement(By.xpath("//span[@class='promoInfo']")).isDisplayed());
+
+	}
+
+	void SearchStringTest() {
+
+		List<WebElement> allElements = driver.findElements(By.xpath("//div[@class='product']/h4"));
+		int count=0;
+		for (int i = 0; i < allElements.size(); i++) {
+			if(allElements.get(i).getText().contains("ber"))
+			{
+				count++;
+			}
+		}
+		System.out.println(count);
+		driver.findElement(By.xpath("//input[@type=\"search\"]")).sendKeys("ber");
+
+		driver.findElements(By.xpath("//div[@class='product']")).size();
+		Assert.assertEquals(count, driver.findElements(By.xpath("//div[@class='product']")).size());
+	}
+	
+	void addToCartList() {
+		String[] searchElements = {"Cucumber","Brocolli"};
+		List<WebElement> allElements = driver.findElements(By.xpath("//div[@class='product']"));
+		int count=0;
+		List searchItems = Arrays.asList(searchElements);
+		for (int i = 0; i < allElements.size(); i++) {
+			String[] elementName = allElements.get(i).getText().split(" ");
+			if(searchItems.contains(elementName[0]))
+			{
+				allElements.get(i).findElement(By.xpath("div[3]")).click();
+			}
+			
+		}
+		
+	}
+	
+	void addToCartListAgain() {
+		
+		String[] searchItems = {"Cucumber","Brocolli"};
+		List<WebElement> listOfItems= driver.findElements(By.xpath("//div[@class='product']/h4"));
+		List searchListItems = Arrays.asList(searchItems);
+		for(int i=0;i<listOfItems.size();i++) {
+			String[] name = listOfItems.get(i).getText().split(" ");
+			if(searchListItems.contains(name[0])) {
+		
+				listOfItems.get(i).findElement(By.xpath("//div[@class='product-action']/button")).click();
+			}
+		}
+		
+	}
+}

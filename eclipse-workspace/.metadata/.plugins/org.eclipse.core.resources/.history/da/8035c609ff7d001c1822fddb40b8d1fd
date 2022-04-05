@@ -1,0 +1,55 @@
+package HomePractice;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Ecart {
+	static WebDriver driver;
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
+		Ecart ec = new Ecart();
+		//ec.addToCart();
+		ec.AddToCartSearchedWords();
+
+	}
+
+	void addToCart() throws InterruptedException {
+
+		driver.findElement(By.xpath("//h4[text()=\"Cucumber - 1 Kg\"]/following-sibling::div[2]")).click();
+		driver.findElement(By.xpath("//a[@class='cart-icon']")).click();
+
+		driver.findElement(By.xpath("//button[text()='PROCEED TO CHECKOUT']")).click();
+		Thread.sleep(3000);
+
+		driver.findElement(By.xpath("//input[@class='promoCode']")).sendKeys("rahulshettyacademy");
+		driver.findElement(By.xpath("//button[@class='promoBtn']")).click();
+		Thread.sleep(5000);
+		System.out.println(driver.findElement(By.xpath("//span[@class='promoInfo']")).isDisplayed());
+
+	}
+
+	void AddToCartSearchedWords() {
+
+		List<WebElement> allElements = driver.findElements(By.xpath("//div[@class='product']/h4"));
+		int count=0;
+		for (int i = 0; i < allElements.size(); i++) {
+			if(allElements.get(i).getText().contains("ber"))
+			{
+				count++;
+			}
+		}
+		System.out.println(count);
+		driver.findElement(By.xpath("//input[@type=\"search\"]")).sendKeys("ber");
+
+	}
+
+}

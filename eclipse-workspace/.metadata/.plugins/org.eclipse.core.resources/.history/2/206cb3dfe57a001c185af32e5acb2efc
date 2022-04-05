@@ -1,0 +1,46 @@
+package HomePractice;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import io.opentelemetry.exporter.logging.SystemOutLogExporter;
+
+public class DropdownPractice {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://rahulshettyacademy.com/dropdownsPractise/");
+		Thread.sleep(3);
+		driver.findElement(By.xpath("//input[@placeholder='Type to Select']")).sendKeys("ind");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		List<WebElement> dropdown = driver.findElements(By.cssSelector("li.ui-menu-item"));
+		
+		for (int i = 0; i < dropdown.size(); i++) {
+			if(dropdown.get(i).getText().equals("India"))
+			{
+				dropdown.get(i).click();
+			}
+		}
+		System.out.println(driver.findElement(By.id("ctl00_mainContent_rbtnl_Trip_0")).isSelected());	
+		
+		WebElement firstDropdown = driver.findElement(By.name("ctl00$mainContent$ddl_originStation1"));
+		Select staticDrop = new Select(firstDropdown);
+		staticDrop.selectByValue("Goa(GOI)");
+		
+		WebElement secondDropdown = driver.findElement(By.id("ctl00_mainContent_ddl_originStation1_CTXT"));
+		Select staticDrop2 = new Select(secondDropdown);
+		staticDrop.selectByValue("Kochi (COK)");
+		
+		
+		
+		
+	}
+
+}

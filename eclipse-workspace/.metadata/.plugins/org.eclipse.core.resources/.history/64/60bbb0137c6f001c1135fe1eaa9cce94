@@ -1,0 +1,14 @@
+package HomePractice;
+
+public class Practice1 {
+
+	
+	
+	public static void main(String[] args) {
+	
+
+		int i = 111;
+		char x;
+		x=(char)i;
+		System.out.println(x);
+	}}

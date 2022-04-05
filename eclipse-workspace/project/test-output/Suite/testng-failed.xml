@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="3" parallel="tests" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="maven.project.ListenersPractice"/>
+  </listeners>
+  <test parallel="classes" name="Test(failed)">
+    <parameter name="urlname" value="google.com"/>
+    <parameter name="username" value="deedudd"/>
+    <classes>
+      <class name="maven.project.EReports">
+        <methods>
+          <include name="screenShot"/>
+        </methods>
+      </class> <!-- maven.project.EReports -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

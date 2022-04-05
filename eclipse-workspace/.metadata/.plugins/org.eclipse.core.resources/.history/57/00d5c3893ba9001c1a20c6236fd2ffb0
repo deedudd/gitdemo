@@ -1,0 +1,40 @@
+package HomePractice;
+
+public class javaPractice {
+
+	public static void palindrome() {
+		int num = 545;
+		int num2 = 17;
+		System.out.println(Math.sqrt(num2));
+		int temp = num;
+		int r;
+		int sum = 0;
+		while (num > 0) {
+			r = num % 10;
+			sum = (sum * 10) + r;
+			num = num / 10;
+		}
+		if (sum == temp)
+			System.out.println("its a palindrome");
+	}
+
+	public static void prime() {
+		int num = 6;
+		if (num % 2 == 0) {
+			System.out.println("not prime");
+		} else {
+			for (int i = 3; i < Math.sqrt(num); i = +2) {
+				if (num % i == 0) {
+					System.out.println("not prime");
+				}
+
+			} 
+				System.out.println("its prime");
+		}
+	}
+
+	public static void main(String[] args) {
+		//palindrome();
+		prime();
+	}
+}

@@ -1,0 +1,16 @@
+package HomePractice;
+
+import java.util.List;
+
+public class Arrays {
+
+	public static void main(String[] args) {
+	
+	
+	List<String > lst1 = java.util.Arrays.asList("a","s","d");
+	System.out.println(lst1);
+	
+	}
+	
+	
+}

@@ -1,0 +1,45 @@
+package maven.Home;
+
+import java.io.IOException;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
+
+import pageObject.PORedbusLandingPage;
+import resources.Base;
+
+public class RedbusTest1 extends Base {
+	public WebDriver driver;
+
+	@Test
+	public void dropdown() throws IOException {
+		driver = initializer();
+		driver.get(prop.getProperty("url1"));
+		PORedbusLandingPage rbl = new PORedbusLandingPage(driver);
+		rbl.fromStation().sendKeys("hyd");
+		
+		for (int i = 0; i < rbl.froStationList().size(); i++) {
+			if (rbl.froStationList().get(i).getText().contentEquals("Kukatpally, Hyderabad")) {
+				rbl.froStationList().get(i).click();
+			}
+		}
+		rbl.toStation().sendKeys("Madhavaram, Chennai");
+		rbl.date().click();
+		int k=0;
+		System.out.println(driver.findElement(By.xpath("//td[@class='monthTitle']")).getText());
+		while(true) {
+		if(driver.findElement(By.xpath("//td[@class='monthTitle']")).getText().equalsIgnoreCase("June2022"))
+		{
+			driver.findElement(By.xpath("//td[text()=\"5\"]")).click();
+			break;
+		}
+		driver.findElement(By.xpath("//td[@class=\"next\"]")).click();
+		k++;
+		if(k>12) {
+			break;
+		}
+	}}
+}

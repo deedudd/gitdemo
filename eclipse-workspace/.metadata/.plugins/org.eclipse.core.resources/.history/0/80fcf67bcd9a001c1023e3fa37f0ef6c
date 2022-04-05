@@ -1,0 +1,15 @@
+package maven.project;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+public class ActionPractice {
+WebDriver driver;
+	@Test
+	public void test1() {
+		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("https://www.browserstack.com/guide/action-class-in-selenium#:~:text=Actions%20class%20is%20an%20ability,the%20advanced%20user%20interactions%20API.");
+	}
+}

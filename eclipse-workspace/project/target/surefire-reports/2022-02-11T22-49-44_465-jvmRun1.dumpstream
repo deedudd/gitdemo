@@ -1,0 +1,4 @@
+# Created at 2022-02-11T22:49:45.717
+
+maven.project.example3Test.radibuttonCheck() is depending on method public void maven.project.example3Test.radioButtonClick(), which is not annotated with @Test or not included.
+

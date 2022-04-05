@@ -1,0 +1,26 @@
+package HomePractice;
+
+public class Practice1 {
+
+	public static void main(String[] args) {
+	
+		System.out.println(staticSample.i);
+	staticSample s1=new staticSample();
+	staticSample s2=new staticSample();
+	
+	
+	System.out.println(s1.counter);
+	System.out.println(s2.counter);
+	System.out.println(staticSample.counter);
+	}
+}
+
+
+class staticSample {
+	public int counter=0;
+	
+	staticSample(){
+		 int i=1;
+	counter++;
+	}
+}

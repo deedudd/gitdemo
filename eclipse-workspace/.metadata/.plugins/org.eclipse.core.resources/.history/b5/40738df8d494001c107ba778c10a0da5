@@ -1,0 +1,23 @@
+package maven.project;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
+import org.testng.annotations.Test;
+
+public class SslCertificatiion {
+	WebDriver driver;
+
+	@Test
+	public void certf() {
+
+		ChromeOptions options = new ChromeOptions();
+		options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+
+		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe"); 
+		driver = new ChromeDriver(options); 
+		driver.get("https://expired.badssl.com");
+		System.out.println(driver.getTitle());
+	}
+}

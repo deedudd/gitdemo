@@ -1,0 +1,62 @@
+package maven.project;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class ParameterizationPractice2 {
+	String browserName;
+	String urlName;
+	WebDriver driver;
+
+	@Parameters({ "username", "password" })
+	@Test
+	public void test1(String username, String password) {
+
+		System.out.printf(username, password);
+	}
+
+	@DataProvider
+	public Object[][] getdata() {
+		Object[][] data = new Object[2][2];
+		data[0][0] = "name1";
+		data[0][1] = "password1";
+		data[1][0] = "name2";
+		data[1][1] = "password2";
+		return data;
+	}
+
+	@Test(dataProvider = "getdata")
+	public void test2(String username, String password) {
+		System.out.printf(username, password);
+	}
+
+	@Test(groups = "smoke")
+	public void test3() throws IOException {
+		Properties prop = new Properties();
+		FileInputStream fis = new FileInputStream(
+				"C:\\Users\\deepi\\eclipse-workspace\\project\\src\\main\\java\\maven\\project\\data.properties");
+		prop.load(fis);
+		browserName = prop.getProperty("browser");
+		urlName = prop.getProperty("url");
+		System.out.println(urlName);
+	}
+
+	@Test(dependsOnMethods = "test3")
+	public void test4() throws IOException {
+		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+		driver = new ChromeDriver();
+		ParameterizationPractice2 pp2 = new ParameterizationPractice2();
+		pp2.test3();
+		String uname = pp2.urlName;
+		driver.get(uname);
+		
+		
+	}
+}

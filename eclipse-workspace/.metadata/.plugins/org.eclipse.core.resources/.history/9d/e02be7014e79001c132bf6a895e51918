@@ -1,0 +1,21 @@
+package HomePractice;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class SeleniumSample1 {
+
+	public static void main(String[] args) {
+		
+		System.setProperty("webdriver.gecko.driver", "D:\\geckodriver.exe");
+		WebDriver driver = new FirefoxDriver();
+		driver.get("https://www.oreilly.com/member/login");
+		driver.findElement(By.xpath("//input[@id='input-x12orm4wzy']")).sendKeys("deepaalu@gmail.com");
+		driver.findElement(By.className("orm-Button-btnContentWrap")).click();
+		
+	}
+
+}

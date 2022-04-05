@@ -1,0 +1,34 @@
+package maven.project;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.Test;
+
+public class ActionPractice {
+WebDriver driver;
+	@Test
+	public void test1() {
+		System.setProperty("webdriver.chrome.driver","C:\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("https://www.browserstack.com/guide/action-class-in-selenium#:~:text=Actions%20class%20is%20an%20ability,the%20advanced%20user%20interactions%20API.");
+		WebElement ele = driver.findElement(By.cssSelector("span.nav_item_name"));
+		Actions a = new Actions(driver);
+		a.moveToElement(ele).perform();
+		a.moveToElement(driver.findElement(By.xpath("//a[contains(text(),'Documentation')]"))).contextClick().sendKeys(Keys.ENTER).sendKeys(Keys.ENTER).perform();
+		
+	}
+	@Test
+	public void draganddrop() {
+		System.setProperty("webdriver.chrome.driver","C:\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("https://jqueryui.com/droppable/");
+		Actions a = new Actions(driver);
+		WebElement drag = driver.findElement(By.xpath(" //p[contains(text(),'Drag me to my target')]"));
+		WebElement drop = driver.findElement(By.xpath("//div[@id='droppable']"));
+		a.dragAndDrop(drag, drop);
+	}
+}

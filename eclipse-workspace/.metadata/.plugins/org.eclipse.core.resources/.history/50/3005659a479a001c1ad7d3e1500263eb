@@ -1,0 +1,22 @@
+package maven.project;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+public class js {
+	WebDriver driver;
+@Test
+public void jscript() throws InterruptedException {
+	System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+	driver = new ChromeDriver();
+	driver.get("https://the-internet.herokuapp.com/");
+	driver.manage().window().maximize();
+	JavascriptExecutor js = (JavascriptExecutor)driver;
+	js.executeScript("window.scrollBy(0,250)","");
+	Thread.sleep(2000);
+	js.executeScript("alert('+alertMessage+');");
+	js.executeScript("window.scrollBy(0,350)","");
+}
+}

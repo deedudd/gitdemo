@@ -1,0 +1,76 @@
+package maven.project;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Set;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+public class ActionPractice {
+WebDriver driver;
+
+	@Test
+	public void option() throws IOException {
+		ChromeOptions options = new ChromeOptions();
+		System.setProperty("webdriver.chrome.driver","C:\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("https://www.google.com");
+		WebElement body = driver.findElement(By.tagName("body"));
+		body.sendKeys(Keys.CONTROL+"n");
+		System.out.println(driver.getWindowHandles().size());
+		
+	}
+		
+	@Test
+	public void test1() {
+		System.setProperty("webdriver.chrome.driver","C:\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("https://www.browserstack.com/guide/action-class-in-selenium#:~:text=Actions%20class%20is%20an%20ability,the%20advanced%20user%20interactions%20API.");
+		WebElement ele = driver.findElement(By.cssSelector("span.nav_item_name"));
+		Actions a = new Actions(driver);
+		a.moveToElement(ele).perform();
+		a.moveToElement(driver.findElement(By.xpath("//a[contains(text(),'Documentation')]"))).contextClick().sendKeys(Keys.ENTER).sendKeys(Keys.ENTER).perform();
+		
+	}
+	@Test
+	public void draganddrop() {
+		System.setProperty("webdriver.chrome.driver","C:\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("https://jqueryui.com/droppable/");
+		driver.switchTo().frame(driver.findElement(By.cssSelector("iframe.demo-frame")));
+		Actions a = new Actions(driver);
+		WebElement drag = driver.findElement(By.xpath(" //p[contains(text(),'Drag me to my target')]"));
+		WebElement drop = driver.findElement(By.xpath("//div[@id='droppable']"));
+		a.dragAndDrop(drag, drop).perform();
+		
+		
+	}
+	
+	@Test
+	public void nestedframes() {
+		System.setProperty("webdriver.chrome.driver","C:\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("https://the-internet.herokuapp.com/");
+		driver.findElement(By.xpath("//a[contains(@href,'nested_frames')]")).click();
+		driver.switchTo().frame(driver.findElement(By.xpath("//frame[@name='frame-top']"))).switchTo().frame(driver.findElement(By.xpath("//frame[@name='frame-middle']")));
+		System.out.println(driver.findElement(By.cssSelector("div#content")).getText());
+	}
+}

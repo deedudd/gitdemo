@@ -1,0 +1,33 @@
+package maven.project;
+
+public class JavaPrctice {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//strRev();
+		palindromeCheck();
+}
+	public static void palindromeCheck() {
+
+		
+		StringBuffer str2 = new StringBuffer();
+		String str1 = "tat";
+		str2.append(str1);
+		if(str1.equals(str2.reverse())) {
+			System.out.println("it is a palidrome");
+		}
+		else
+			System.out.println("not a palindrome");
+		
+	}
+	public static void strRev() {
+		String str1 = "Deepika";
+		String str2 = "";
+		for(int i=0;i<str1.length();i++) {
+			str2 = str1.charAt(i)+str2;
+		}
+		System.out.println(str2);
+	}
+	
+	
+}

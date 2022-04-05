@@ -1,0 +1,75 @@
+package HomePractice;
+
+public class javaPractice {
+
+	public static void palindrome() {
+		int num = 545;
+		int num2 = 17;
+		System.out.println(Math.sqrt(num2));
+		int temp = num;
+		int r;
+		int sum = 0;
+		while (num > 0) {
+			r = num % 10;
+			sum = (sum * 10) + r;
+			num = num / 10;
+		}
+		if (sum == temp)
+			System.out.println("its a palindrome");
+	}
+
+	public static boolean IsPrime() {
+		int num = 293;
+		boolean retCode = true;
+		if (num % 2 == 0) {
+			retCode = false;
+		} else {
+			for (int i = 3; i <= Math.sqrt(num); i +=2) {
+				if (num % i == 0) {
+					retCode = false;
+					break;
+				}
+
+			}
+		}
+		return retCode;
+
+	}
+
+	public static void main(String[] args) {
+		// palindrome();
+		//System.out.println(IsPrime());
+		//summation();
+		stringPalindrome();
+	}
+
+	public static void stringPalindrome() {
+		String str1="aniket";
+		String str2 = "";
+		for(int i =0;i<str1.length();i++) {
+			str2=str1.charAt(i)+str2;
+		}
+		StringBuffer str3 = new StringBuffer();
+		str3.append("aniket");
+		System.out.println(str3);
+		if((str3.reverse()).equals(str2))
+			System.out.println("Working");
+		System.out.println(str2);
+	
+	}
+
+	public static void summation() {
+		int num = 234;
+		int r, temp;
+		int sum=0;
+		
+		while(num>0) {
+			r = num%10;
+			sum = sum +r;
+			num=num/10;
+			
+		}
+		System.out.println(sum);
+		
+	}
+}

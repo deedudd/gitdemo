@@ -1,0 +1,24 @@
+package HomePractice;
+
+public class Practice1 {
+
+	
+
+	public static void main(String[] args) {
+		System.out.println("hello");
+		Practice1 p1 = new Practice1();
+		System.out.println(p1.i);
+	}
+	int i =3;
+	char x;
+		public void typeCasting(){
+		
+		x=(char)i;
+		i=(int)x;
+		System.out.println(x+"i"+i);
+	
+}
+
+}
+
+	

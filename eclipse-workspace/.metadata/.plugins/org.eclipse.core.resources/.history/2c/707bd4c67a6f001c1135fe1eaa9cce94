@@ -1,0 +1,37 @@
+package HomePractice;
+
+public class Practice1 {
+
+	
+	
+	public static void main(String[] args) {
+	
+
+	staticSample s1=new staticSample();
+	staticSample s2=new staticSample();
+	
+	
+	System.out.println("inside main");
+	new NonStaticExample();
+	}
+}
+
+
+class staticSample {
+	public static int counter=0;
+	 int i=1;
+	staticSample(){
+		
+	counter++;
+	}
+}
+
+class NonStaticExample{
+	NonStaticExample(){
+		System.out.println("In constructor");
+	}
+	{
+		System.out.println("inside Nonstatic block");
+	}
+	
+}
